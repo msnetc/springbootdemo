@@ -1,6 +1,6 @@
 ## SpringBoot整合Mybatis示例项目
 
-#### 前言
+### 前言
 Spring Boot是最近几年火起来的一个开源框架，通过使用特定方式的配置快速搭建应用开发项目（Spring原来强大而且恶心的xml配置，相信不少人配置过一次就不想搞第二次吧）。
 
 开发人员通过starter（启动器）引入所需模块，无需过分关注其中的依赖处理，Spring Boot会自动发现和组织其中的bean以及自动获取相关配置。
@@ -9,12 +9,12 @@ Spring Boot是最近几年火起来的一个开源框架，通过使用特定方
 
 ***
 
-#### 进入正题
-##### >>创建项目
+### 进入正题
+#### >>创建项目
 
 创建一个普通的Maven webapp项目，很简单，所以...过程略...
 
-##### >>添加Maven依赖
+#### >>添加Maven依赖
 
 在pom.xml文件中添加对应的依赖，需注意的是本人使用jetty替换tomcat容器、使用log4j2替换默认的logback，所以引入spring-boot-starter-web的时候排除累tomcat、logging的starter，不需要可自行调整。具体见以下代码及注释。
 
@@ -154,7 +154,7 @@ Spring Boot是最近几年火起来的一个开源框架，通过使用特定方
 ```
 
 
-##### >>数据源配置
+#### >>数据源配置
 
 1. 在src/main/resource路径下添加jdbc.properties文件，保存数据源相关配置。
 
@@ -274,7 +274,7 @@ public class DataSourceProperties {
 ```
 
 
-##### >>Mybatis配置
+#### >>Mybatis配置
 
 1. 新建MybatisConfig类，用于配置Mybatis相关Bean（SqlSessionFactory、SqlSessionTemplate等）。
 
@@ -413,7 +413,7 @@ public class MapperScannerConfiguierConfig {
 
 ```
 
-##### >>Spring Boot启动入口
+#### >>Spring Boot启动入口
 
 创建Spring Boot启动入口Application类，这里只有启动的main方法，所以的配置都在其他的config类配置。
 
@@ -443,7 +443,7 @@ public class Application extends WebMvcConfigurerAdapter {
 ```
 
 
-##### >>MyBatis generator插件配置
+#### >>MyBatis generator插件配置
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
@@ -498,14 +498,14 @@ public class Application extends WebMvcConfigurerAdapter {
 </generatorConfiguration>
 ```
 
-##### >>生成实体类及Mapper接口
+#### >>生成实体类及Mapper接口
 
 我用的是IDEA IntelliJ，使用Mybatis generator插件的方式如下图，其他开发工具类似。
 
 ![image](http://note.youdao.com/yws/public/resource/65bd991a23087de0045eec6b5eacbdf3/xmlnote/8BECB4FD79DB48C18169D3C8AA62A3F9/28639)
 
 
-##### >>开发Service
+#### >>开发Service
 1. 定义UserService接口
 
 *UserService.class*
@@ -588,7 +588,7 @@ public class UserServiceImpl implements UserService {
 
 ```
 
-##### >>开发Controller
+#### >>开发Controller
 
 定义UserController类。
 
@@ -668,7 +668,7 @@ public class UserController extends BaseController {
 
 ```
 
-##### >>Log4j2配置（使用Spring Boot默认日志模块可忽略）
+#### >>Log4j2配置（使用Spring Boot默认日志模块可忽略）
 
 1. 新建log4j2.properties文件，配置appender和logger，以下配置增加单独输出Mybatis Mapper的Debug日志，由于查看Mybatis的语句执行记录。
 
@@ -722,11 +722,11 @@ logger.sql.appenderRef.console.ref = STDOUT
 logging.config=classpath:log4j2.properties
 ```
 
-##### >>整体项目结构
+#### >>整体项目结构
 
 ![image](http://note.youdao.com/yws/public/resource/65bd991a23087de0045eec6b5eacbdf3/xmlnote/529C76B632AF4CACA04D314824356968/28702)
 
-##### >>启动&测试
+#### >>启动&测试
 1. 运行入口main方法，启动Spring Boot。
 
 ![image](http://note.youdao.com/yws/public/resource/65bd991a23087de0045eec6b5eacbdf3/xmlnote/714BF433954D4EBF8107E606735DD56C/28668)
@@ -737,7 +737,7 @@ logging.config=classpath:log4j2.properties
 
 ***
 
-#### 附录
+### 附录
 - 示例数据库初始化脚本
  
 
@@ -758,5 +758,5 @@ CREATE TABLE `sys_user` (
 ***
 
 
-#### 示例源码
+### 示例源码
 示例项目源码地址：[https://code.aliyun.com/cent/spring-boot-demo.git](https://code.aliyun.com/cent/spring-boot-demo.git)
